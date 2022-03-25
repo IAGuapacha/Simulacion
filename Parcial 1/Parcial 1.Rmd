@@ -1,0 +1,61 @@
+---
+title: "Parcial"
+output: html_document
+date: '2022-03-24'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 1
+La tabla mostrada contiene valores de población, en cientos de miles, de las diez ciudades más pobladas de cuatro países en el año 1967:
+
+
+```{r punto1, echo=FALSE}
+argentina<- c(29.66, 7.61, 6.35, 4.10, 3.80, 2.75, 2.70, 2.69, 2.51, 2.44) 
+eeuu<- c(77.81, 35.50, 24.79, 20.02, 16.70, 9.39, 9.38, 8.76, 7.63, 7.50)
+holanda <- c(8.68, 7.31, 6.02, 2.64, 1.75, 1.72, 1.51, 1.42, 1.31, 1.29)
+japon <- c(110.21, 32.14, 18.88, 16.38, 13.37, 11.92, 10.71, 7.80, 7.70, 7.00)
+
+par(mfrow=c(2,2))
+
+boxplot(argentina, horizontal= TRUE, main = "Boxplot Población Ciudades Argentina 1967", xlab= "Poblacion de las ciudades en cientos de miles")
+boxplot(eeuu, horizontal=TRUE, main = "Boxplot Población Ciudades Estados Unidos 1967", xlab= "Poblacion de las ciudades en cientos de miles")
+boxplot(holanda, horizontal=TRUE, main = "Boxplot Población Ciudades Holanda 1967", xlab= "Poblacion de las ciudades en cientos de miles")
+boxplot(japon, horizontal=TRUE, main = "Boxplot Población Ciudades Japon 1967", xlab= "Poblacion de las ciudades en cientos de miles")
+```
+
+
+a) Construya un box-plot e identifique los puntos extremos. ¿Cuáles son las características más sobresalientes? ¿Hay outliers?
+
+```{r punto1a, echo=FALSE}
+cat("En los boxplots construidos anteriormente podemos notar que existen outliners para 3 de los 4 paises graficados, los caules son: Argentina, Estados Unidos y Japon, dejando asi a Holanda como el unico pais sin outliners. \n Entre las caracteriticas mas sobresalientes esta la gran concentración de datos que tiene el país de Japon como podemos observar en su caja tan pequeña mostrnadonos asi ue su varianza es muy pequeña. Una caracteristica que se debe mencionar es que a pesar de Holanda tener la caja mas grande graficamente si nos fijamos en la escala de x es mucho menor que la de otros país lo que podemos intuir que puede no tener la mayor varianza numericamente pero porcentualmente si, es decir que puede que la diferencia en ciudades de Holanda sea mas o menos 7 (cientos de miles) esto es 7 veces su población menor, en cambio otros paises que pueden variar entre el menor y el mayor 20 (cientos de miles) es solo 3 veces mas")
+
+```
+
+b) Compare los centros de cada población, sus dispersiones y su simetría. ¿Cuál es el país más homogéneamente habitado? ¿Cuáles son las características más sobresalientes? ¿Hay outliers?
+```{r punto1b, echo=FALSE}
+cat("Al comparar los centros del boxplot de cada país podemos identificar que Argentina, Estados Unidos y Holanda tienen su media entre los primeros cuartiles, denotando asi que hay mas concentración de datos en esta zona, a diferencia de Japon, quien tiene la población mas homogeneamente distribuida ya que su media esta mas centrada en la caja que las demas.")
+```
+
+## 2
+Avianca se encuentra estudiando la situación de venta de puesto en el vuelo Armenia – Bogotá puesto que ha identificado que el 2% de las personas que reservaron puesto, no se presentan a la hora del embarque. Teniendo en cuenta que el avión A320 utilizado en esta ruta tiene una capacidad para 180 pasajeros, la empresa decide vender 181 tiquetes. ¿Cuál es la probabilidad de que todas las personas que llegan a embarque puedan tener su silla asegurada y no se presenten quejas por “sobre-vender” sillas ante la aeronáutica civil? Asuma que las llegadas de los pasajeros siguen una distribución Poisson.
+
+
+```{r punto2, echo=FALSE}
+cat("X = # de personas que se presentan y tienen su puesto asegurado \n# boletos vendidos =181 \nlambda = 176.4, que es el 98% de 180 que es el promedio de personas que si van al vuelo una vez comprada la boleta \n para este caso es necesario calcular la probabilidad puntual de 181 que seria el caso de fallo y restarle esa probabilidad a 1 para encontrar la probabilidad de todos los casos de exito: ")
+
+probabilidad <-dpois(181,176.4)
+cat("la probabilidad de que todas las personas que vayan al vuelo tengan su cupo asegurado es : ", 1-probabilidad)
+```
+
+## 3 
+En la planta envasadora de Coca-Cola FEMSA ubicada en Tocancipá se realiza el embotellado de la CocaCola presentación de 400 mL (en promedio), con una desviación estándar de 5 mL (mililitros). Si se sabe por experiencia que este proceso de embotellado sigue una distribución normal, y también se sabe que todo producto con más de 415 mL es declarado como NO CONFORME. Determine el porcentaje de las botellas de gaseosa que son declaradas producto NO CONFORME.
+
+```{r punto3, echo=FALSE}
+
+cat("x = numero de coca-colas no conformes \nmiu = 400 \nsd = 5 \nNecesitamos saber la probabilidad de las coca-colas que no son conformes es decir que su contenido es de +415ml para esto calculamos la probabilidad pnorm para cuando el cotenido es 415 con un lower.tail false para que nos tome cualquier valor por encima de 415")
+cat("el porcentaje de las coca-colas no conformes es: ",pnorm(415,400,5,lower.tail = FALSE))
+
+```
